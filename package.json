@@ -48,9 +48,6 @@
 		"tsx": "^4.15.4",
 		"typescript": "^5.4.5"
 	},
-	"prisma": {
-		"seed": "dotenv -e .env/.env.development -- tsx prisma/seed.ts"
-	},
 	"nodemonConfig": {
 		"watch": [
 			"src/"
