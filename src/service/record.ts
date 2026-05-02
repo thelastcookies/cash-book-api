@@ -9,7 +9,7 @@ export const getRecordList = (params: {
   skip?: number;
   take?: number;
   where?: Record<string, any>;
-  orderBy?: Record<string, string>;
+  orderBy?: Record<string, string> | Record<string, string>[];
 }) => {
   return prisma.baseRecord.findMany({
     skip: params.skip,

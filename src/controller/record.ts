@@ -31,7 +31,7 @@ export const list = async (ctx: Context) => {
   if (amount) where.amount = Number(amount);
 
   const [list, total] = await Promise.all([
-    recordService.getRecordList({ skip, take: pageSizeNum, where, orderBy: { createdAt: 'desc' } }),
+    recordService.getRecordList({ skip, take: pageSizeNum, where, orderBy: [{ createdAt: 'desc' }, { id: 'desc' }] }),
     recordService.getRecordCount(where),
   ]);
 
