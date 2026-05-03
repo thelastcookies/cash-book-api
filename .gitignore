@@ -132,4 +132,6 @@ dist
 /repo
 
 # docker builds
-/lips-hips-api*
+/cash-book-api*
+
+README_DEPLOY.md

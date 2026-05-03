@@ -14,9 +14,9 @@
 		"build": "pnpm build:docker:tar",
 		"build:push": "pnpm build:docker:push",
 		"build:esbuild": "tsx ./esbuild.config.ts",
-		"build:docker": "pnpm build:esbuild && docker build --platform linux/arm64 -t thelastcookies/lips-hips-api:latest .",
-		"build:docker:tar": "pnpm build:docker && docker save -o lips-hips-api.tar thelastcookies/lips-hips-api:latest",
-		"build:docker:push": "pnpm build:docker && docker push thelastcookies/lips-hips-api:latest"
+		"build:docker": "pnpm build:esbuild && docker build --platform linux/amd64 -t thelastcookies/cash-book-api:latest .",
+		"build:docker:tar": "pnpm build:docker && docker save -o cash-book-api.tar thelastcookies/cash-book-api:latest",
+		"build:docker:push": "pnpm build:docker && docker push thelastcookies/cash-book-api:latest"
 	},
 	"dependencies": {
 		"@koa/bodyparser": "^5.1.1",

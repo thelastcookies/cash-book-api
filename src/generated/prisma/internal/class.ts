@@ -34,6 +34,14 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "linux-musl-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -56,8 +64,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BaseRecord {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n  record    String?  @db.VarChar(255)\n  amount    Float?   @default(0)\n\n  @@map(\"base_record\")\n}\n",
-  "inlineSchemaHash": "af6355d75185cf60afab998c13383ea02daa4a1d988828384325986182361a8b",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"linux-musl-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BaseRecord {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n  record    String?  @db.VarChar(255)\n  amount    Float?   @default(0)\n\n  @@map(\"base_record\")\n}\n",
+  "inlineSchemaHash": "49c1c7c821b1ec8fa3bc8c105a7806887aef212ef611f96c976e7c9c5182e092",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
