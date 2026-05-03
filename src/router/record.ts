@@ -1,10 +1,12 @@
 import Router from '@koa/router';
 import { recordController } from '../controller';
+import authMiddleware from '../middleware/auth.ts';
 
 const router = new Router({
   prefix: '/record',
 });
 
+router.use(authMiddleware);
 router.get('/', recordController.list);
 router.get('/:id', recordController.detail);
 router.post('/', recordController.save);

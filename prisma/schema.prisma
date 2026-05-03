@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider      = "prisma-client"
+  output        = "../src/generated/prisma"
   binaryTargets = ["native", "debian-openssl-3.0.x", "linux-musl-openssl-3.0.x"]
 }
 
@@ -17,4 +17,15 @@ model BaseRecord {
   amount    Float?   @default(0)
 
   @@map("base_record")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  username     String   @unique @db.VarChar(50)
+  password     String   @db.VarChar(255)
+  refreshToken String?  @db.VarChar(500) @map("refresh_token")
+
+  @@map("user")
 }

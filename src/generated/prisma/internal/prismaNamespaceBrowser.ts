@@ -49,7 +49,8 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 
 export const ModelName = {
-  BaseRecord: 'BaseRecord'
+  BaseRecord: 'BaseRecord',
+  User: 'User'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -79,6 +80,18 @@ export const BaseRecordScalarFieldEnum = {
 export type BaseRecordScalarFieldEnum = (typeof BaseRecordScalarFieldEnum)[keyof typeof BaseRecordScalarFieldEnum]
 
 
+export const UserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  refreshToken: 'refreshToken',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -100,4 +113,13 @@ export const BaseRecordOrderByRelevanceFieldEnum = {
 } as const
 
 export type BaseRecordOrderByRelevanceFieldEnum = (typeof BaseRecordOrderByRelevanceFieldEnum)[keyof typeof BaseRecordOrderByRelevanceFieldEnum]
+
+
+export const UserOrderByRelevanceFieldEnum = {
+  username: 'username',
+  password: 'password',
+  refreshToken: 'refreshToken'
+} as const
+
+export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
 

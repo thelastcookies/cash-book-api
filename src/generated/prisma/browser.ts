@@ -22,3 +22,8 @@ export * from './enums.ts';
  * 
  */
 export type BaseRecord = Prisma.BaseRecordModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
