@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import Koa from 'koa';
 import cors from '@koa/cors';
 import bodyParser from '@koa/bodyparser';
@@ -7,10 +6,6 @@ import ip from 'ip';
 import loggerMiddleware from './middleware/logger.ts';
 import responseMiddleware from './middleware/response.ts';
 import notFoundMiddleware from './middleware/not-found.ts';
-
-dotenv.config({
-  path: ['.env/.env', '.env/.env.development', '.env/.env.production'],
-});
 
 const ipAddr = ip.address();
 const PORT = process.env.PORT || 3000;

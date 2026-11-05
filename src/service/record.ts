@@ -1,4 +1,4 @@
-import prisma from '../prisma.ts';
+import { prisma } from '../prisma.ts';
 import type { BaseRecordCreateInput, BaseRecordUpdateInput } from '../generated/prisma/models/BaseRecord.ts';
 
 export const getRecordById = (id: number) => {

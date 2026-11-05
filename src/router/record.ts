@@ -6,7 +6,7 @@ const router = new Router({
   prefix: '/record',
 });
 
-router.use(authMiddleware);
+// router.use(authMiddleware);
 router.get('/', recordController.list);
 router.get('/:id', recordController.detail);
 router.post('/', recordController.save);

@@ -11,73 +11,49 @@
  * Please import the `PrismaClient` class from the `client.ts` file instead.
  */
 
-import * as runtime from "@prisma/client/runtime/library"
+import * as runtime from "@prisma/client/runtime/client"
 import type * as Prisma from "./prismaNamespace.ts"
 
 
 const config: runtime.GetPrismaClientConfig = {
-  "generator": {
-    "name": "client",
-    "provider": {
-      "fromEnvVar": null,
-      "value": "prisma-client"
-    },
-    "output": {
-      "value": "/Users/xinwentao/Desktop/Code/NodeJS/cash-book-api/src/generated/prisma",
-      "fromEnvVar": null
-    },
-    "config": {
-      "engineType": "library"
-    },
-    "binaryTargets": [
-      {
-        "fromEnvVar": null,
-        "value": "darwin-arm64",
-        "native": true
-      },
-      {
-        "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x"
-      },
-      {
-        "fromEnvVar": null,
-        "value": "linux-musl-openssl-3.0.x"
-      }
-    ],
-    "previewFeatures": [],
-    "sourceFilePath": "/Users/xinwentao/Desktop/Code/NodeJS/cash-book-api/prisma/schema.prisma",
-    "isCustomOutput": true
-  },
-  "relativePath": "../../../prisma",
-  "clientVersion": "6.19.3",
-  "engineVersion": "c2990dca591cba766e3b7ef5d9e8a84796e47ab7",
-  "datasourceNames": [
-    "db"
-  ],
+  "previewFeatures": [],
+  "clientVersion": "7.10.1",
+  "engineVersion": "d1b3f377ca835d73fd50954a5e22128b9ebdd6b8",
   "activeProvider": "mysql",
-  "inlineDatasources": {
-    "db": {
-      "url": {
-        "fromEnvVar": "DATABASE_URL",
-        "value": null
-      }
-    }
-  },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"linux-musl-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel BaseRecord {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n  record    String?  @db.VarChar(255)\n  amount    Float?   @default(0)\n\n  @@map(\"base_record\")\n}\n\nmodel User {\n  id           Int      @id @default(autoincrement())\n  username     String   @unique @db.VarChar(50)\n  password     String   @db.VarChar(255)\n  refreshToken String?  @map(\"refresh_token\") @db.VarChar(500)\n  createdAt    DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime @updatedAt @map(\"updated_at\")\n\n  @@map(\"user\")\n}\n",
-  "inlineSchemaHash": "6411f9f6bc1cefeab2e7f63ca136eacf5279ef51dd119120426ede7ad0425874",
-  "copyEngine": true,
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n}\n\nmodel BaseRecord {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n  record    String?  @db.VarChar(255)\n  amount    Float?   @default(0)\n\n  @@map(\"base_record\")\n}\n\nmodel User {\n  id           Int      @id @default(autoincrement())\n  createdAt    DateTime @default(now()) @map(\"created_at\") @db.Timestamp(0)\n  updatedAt    DateTime @updatedAt @map(\"updated_at\")\n  username     String   @unique @db.VarChar(50)\n  password     String   @db.VarChar(255)\n  refreshToken String?  @map(\"refresh_token\") @db.VarChar(500)\n\n  @@map(\"user\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
     "types": {}
   },
-  "dirname": ""
+  "parameterizationSchema": {
+    "strings": [],
+    "graph": ""
+  }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"BaseRecord\":{\"dbName\":\"base_record\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"dbName\":\"created_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":[\"Timestamp\",[\"0\"]],\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"dbName\":\"updated_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"record\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"255\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"amount\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Float\",\"nativeType\":null,\"default\":0,\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"User\":{\"dbName\":\"user\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"username\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"50\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"255\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"refreshToken\",\"dbName\":\"refresh_token\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"VarChar\",[\"500\"]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"dbName\":\"created_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":[\"Timestamp\",[\"0\"]],\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"dbName\":\"updated_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
-config.engineWasm = undefined
-config.compilerWasm = undefined
+config.runtimeDataModel = JSON.parse("{\"models\":{\"BaseRecord\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"record\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Float\"}],\"dbName\":\"base_record\",\"schema\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"refresh_token\"}],\"dbName\":\"user\",\"schema\":null}},\"enums\":{},\"types\":{}}")
+config.parameterizationSchema = {
+  strings: JSON.parse("[\"where\",\"BaseRecord.findUnique\",\"BaseRecord.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"BaseRecord.findFirst\",\"BaseRecord.findFirstOrThrow\",\"BaseRecord.findMany\",\"data\",\"BaseRecord.createOne\",\"BaseRecord.createMany\",\"BaseRecord.updateOne\",\"BaseRecord.updateMany\",\"create\",\"update\",\"BaseRecord.upsertOne\",\"BaseRecord.deleteOne\",\"BaseRecord.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"BaseRecord.groupBy\",\"BaseRecord.aggregate\",\"User.findUnique\",\"User.findUniqueOrThrow\",\"User.findFirst\",\"User.findFirstOrThrow\",\"User.findMany\",\"User.createOne\",\"User.createMany\",\"User.updateOne\",\"User.updateMany\",\"User.upsertOne\",\"User.deleteOne\",\"User.deleteMany\",\"User.groupBy\",\"User.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"createdAt\",\"updatedAt\",\"username\",\"password\",\"refreshToken\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"contains\",\"startsWith\",\"endsWith\",\"search\",\"not\",\"record\",\"amount\",\"_relevance\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "WhEcCCgAAEcAMCkAAAQAECoAAEcAMCsCAAAAASxAAEAAIS1AAEAAIT0BAEIAIT4IAEgAIQEAAAABACABAAAAAQAgCCgAAEcAMCkAAAQAECoAAEcAMCsCAD8AISxAAEAAIS1AAEAAIT0BAEIAIT4IAEgAIQM9AABJACA-AABJACA_AABaACADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAFKwIAAAABLEAAAAABLUAAAAABPQEAAAABPggAAAABAQgAAAkAIAUrAgAAAAEsQAAAAAEtQAAAAAE9AQAAAAE-CAAAAAEBCAAACwAwBSsCAFIAISxAAE8AIS1AAE8AIT0BAFEAIT4IAFkAIQIAAAABACAIAAANACAFKwIAUgAhLEAATwAhLUAATwAhPQEAUQAhPggAWQAhAgAAAAQAIAgAAA8AIAMAAAABACANAAAJACAOAAANACABAAAAAQAgAQAAAAQAIAcTAABUACAUAABVACAVAABYACAWAABXACAXAABWACA9AABJACA-AABJACAIKAAAQwAwKQAAFQAQKgAAQwAwKwIAMAAhLEAAMQAhLUAAMQAhPQEAMwAhPggARAAhAwAAAAQAIAMAABQAMBIAABUAIAMAAAAEACADAAAFADAEAAABACAJKAAAPgAwKQAAGwAQKgAAPgAwKwIAAAABLEAAQAAhLUAAQAAhLgEAAAABLwEAQQAhMAEAQgAhAQAAABgAIAEAAAAYACAJKAAAPgAwKQAAGwAQKgAAPgAwKwIAPwAhLEAAQAAhLUAAQAAhLgEAQQAhLwEAQQAhMAEAQgAhAjAAAEkAID8AAFMAIAMAAAAbACADAAAcADAEAAAYACADAAAAGwAgAwAAHAAwBAAAGAAgAwAAABsAIAMAABwAMAQAABgAIAYrAgAAAAEsQAAAAAEtQAAAAAEuAQAAAAEvAQAAAAEwAQAAAAEBCAAAIAAgBisCAAAAASxAAAAAAS1AAAAAAS4BAAAAAS8BAAAAATABAAAAAQEIAAAiADAGKwIAUgAhLEAATwAhLUAATwAhLgEAUAAhLwEAUAAhMAEAUQAhAgAAABgAIAgAACQAIAYrAgBSACEsQABPACEtQABPACEuAQBQACEvAQBQACEwAQBRACECAAAAGwAgCAAAJgAgAwAAABgAIA0AACAAIA4AACQAIAEAAAAYACABAAAAGwAgBhMAAEoAIBQAAEsAIBUAAE4AIBYAAE0AIBcAAEwAIDAAAEkAIAkoAAAvADApAAAsABAqAAAvADArAgAwACEsQAAxACEtQAAxACEuAQAyACEvAQAyACEwAQAzACEDAAAAGwAgAwAAKwAwEgAALAAgAwAAABsAIAMAABwAMAQAABgAIAkoAAAvADApAAAsABAqAAAvADArAgAwACEsQAAxACEtQAAxACEuAQAyACEvAQAyACEwAQAzACENEwAAOAAgFAAAPQAgFQAAOAAgFgAAOAAgFwAAOAAgMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABPAIAPAAhCxMAADgAIBYAADsAIBcAADsAIDFAAAAAATJAAAAABDNAAAAABDRAAAAAATVAAAAAATZAAAAAATdAAAAAATxAADoAIQ8TAAA4ACAWAAA5ACAXAAA5ACAxAQAAAAEyAQAAAAQzAQAAAAQ0AQAAAAE1AQAAAAE2AQAAAAE3AQAAAAE4AQAAAAE5AQAAAAE6AQAAAAE7AQAAAAE8AQA3ACEPEwAANQAgFgAANgAgFwAANgAgMQEAAAABMgEAAAAFMwEAAAAFNAEAAAABNQEAAAABNgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEAAAABOwEAAAABPAEANAAhDxMAADUAIBYAADYAIBcAADYAIDEBAAAAATIBAAAABTMBAAAABTQBAAAAATUBAAAAATYBAAAAATcBAAAAATgBAAAAATkBAAAAAToBAAAAATsBAAAAATwBADQAIQgxAgAAAAEyAgAAAAUzAgAAAAU0AgAAAAE1AgAAAAE2AgAAAAE3AgAAAAE8AgA1ACEMMQEAAAABMgEAAAAFMwEAAAAFNAEAAAABNQEAAAABNgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEAAAABOwEAAAABPAEANgAhDxMAADgAIBYAADkAIBcAADkAIDEBAAAAATIBAAAABDMBAAAABDQBAAAAATUBAAAAATYBAAAAATcBAAAAATgBAAAAATkBAAAAAToBAAAAATsBAAAAATwBADcAIQgxAgAAAAEyAgAAAAQzAgAAAAQ0AgAAAAE1AgAAAAE2AgAAAAE3AgAAAAE8AgA4ACEMMQEAAAABMgEAAAAEMwEAAAAENAEAAAABNQEAAAABNgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEAAAABOwEAAAABPAEAOQAhCxMAADgAIBYAADsAIBcAADsAIDFAAAAAATJAAAAABDNAAAAABDRAAAAAATVAAAAAATZAAAAAATdAAAAAATxAADoAIQgxQAAAAAEyQAAAAAQzQAAAAAQ0QAAAAAE1QAAAAAE2QAAAAAE3QAAAAAE8QAA7ACENEwAAOAAgFAAAPQAgFQAAOAAgFgAAOAAgFwAAOAAgMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABPAIAPAAhCDEIAAAAATIIAAAABDMIAAAABDQIAAAAATUIAAAAATYIAAAAATcIAAAAATwIAD0AIQkoAAA-ADApAAAbABAqAAA-ADArAgA_ACEsQABAACEtQABAACEuAQBBACEvAQBBACEwAQBCACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABPAIAOAAhCDFAAAAAATJAAAAABDNAAAAABDRAAAAAATVAAAAAATZAAAAAATdAAAAAATxAADsAIQwxAQAAAAEyAQAAAAQzAQAAAAQ0AQAAAAE1AQAAAAE2AQAAAAE3AQAAAAE4AQAAAAE5AQAAAAE6AQAAAAE7AQAAAAE8AQA5ACEMMQEAAAABMgEAAAAFMwEAAAAFNAEAAAABNQEAAAABNgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEAAAABOwEAAAABPAEANgAhCCgAAEMAMCkAABUAECoAAEMAMCsCADAAISxAADEAIS1AADEAIT0BADMAIT4IAEQAIQ0TAAA1ACAUAABGACAVAABGACAWAABGACAXAABGACAxCAAAAAEyCAAAAAUzCAAAAAU0CAAAAAE1CAAAAAE2CAAAAAE3CAAAAAE8CABFACENEwAANQAgFAAARgAgFQAARgAgFgAARgAgFwAARgAgMQgAAAABMggAAAAFMwgAAAAFNAgAAAABNQgAAAABNggAAAABNwgAAAABPAgARQAhCDEIAAAAATIIAAAABTMIAAAABTQIAAAAATUIAAAAATYIAAAAATcIAAAAATwIAEYAIQgoAABHADApAAAEABAqAABHADArAgA_ACEsQABAACEtQABAACE9AQBCACE-CABIACEIMQgAAAABMggAAAAFMwgAAAAFNAgAAAABNQgAAAABNggAAAABNwgAAAABPAgARgAhAAAAAAAAAUBAAAAAAQFAAQAAAAEBQAEAAAABBUACAAAAAUECAAAAAUICAAAAAUMCAAAAAUQCAAAAAQE7AQAAAAEAAAAAAAVACAAAAAFBCAAAAAFCCAAAAAFDCAAAAAFECAAAAAEBOwEAAAABAAAFEwAEFAAFFQAGFgAHFwAIAAAAAAAFEwAEFAAFFQAGFgAHFwAIAAUTAAwUAA0VAA4WAA8XABAAAAAAAAUTAAwUAA0VAA4WAA8XABABAgECAwEFBgEGBwEHCAEJCgEKDAILDgEMEAIPEQEQEgEREwIYFgMZFwkaGQobGgocHQodHgoeHwofIQogIwIhJQoiJwIjKAokKQolKgImLQsnLhE"
+}
 
+async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
+  const { Buffer } = await import('node:buffer')
+  const wasmArray = Buffer.from(wasmBase64, 'base64')
+  return new WebAssembly.Module(wasmArray)
+}
+
+config.compilerWasm = {
+  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_fast_bg.mysql.mjs"),
+
+  getQueryCompilerWasmModule: async () => {
+    const { wasm } = await import("@prisma/client/runtime/query_compiler_fast_bg.mysql.wasm-base64.mjs")
+    return await decodeBase64AsWasm(wasm)
+  },
+
+  importName: "./query_compiler_fast_bg.js"
+}
 
 
 
@@ -91,12 +67,14 @@ export interface PrismaClientConstructor {
    * Type-safe database client for TypeScript
    * @example
    * ```
-   * const prisma = new PrismaClient()
+   * const prisma = new PrismaClient({
+   *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * })
    * // Fetch zero or more BaseRecords
    * const baseRecords = await prisma.baseRecord.findMany()
    * ```
    * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   * Read more in our [docs](https://pris.ly/d/client).
    */
 
   new <
@@ -104,7 +82,7 @@ export interface PrismaClientConstructor {
     LogOpts extends LogOptions<Options> = LogOptions<Options>,
     OmitOpts extends Prisma.PrismaClientOptions['omit'] = Options extends { omit: infer U } ? U : Prisma.PrismaClientOptions['omit'],
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
-  >(options?: Prisma.Subset<Options, Prisma.PrismaClientOptions> ): PrismaClient<LogOpts, OmitOpts, ExtArgs>
+  >(options: Prisma.PrismaClientConstructorArgs<Options>): PrismaClient<LogOpts, OmitOpts, ExtArgs>
 }
 
 /**
@@ -113,12 +91,14 @@ export interface PrismaClientConstructor {
  * Type-safe database client for TypeScript
  * @example
  * ```
- * const prisma = new PrismaClient()
+ * const prisma = new PrismaClient({
+ *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+ * })
  * // Fetch zero or more BaseRecords
  * const baseRecords = await prisma.baseRecord.findMany()
  * ```
  * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 
 export interface PrismaClient<
@@ -147,7 +127,7 @@ export interface PrismaClient<
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -159,7 +139,7 @@ export interface PrismaClient<
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -170,7 +150,7 @@ export interface PrismaClient<
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -182,7 +162,7 @@ export interface PrismaClient<
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -198,12 +178,11 @@ export interface PrismaClient<
    * ])
    * ```
    * 
-   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => runtime.Types.Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<R>
-
 
   $extends: runtime.Types.Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<OmitOpts>, ExtArgs, runtime.Types.Utils.Call<Prisma.TypeMapCb<OmitOpts>, {
     extArgs: ExtArgs
@@ -230,7 +209,6 @@ export interface PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
-export function getPrismaClientClass(dirname: string): PrismaClientConstructor {
-  config.dirname = dirname
+export function getPrismaClientClass(): PrismaClientConstructor {
   return runtime.getPrismaClient(config) as unknown as PrismaClientConstructor
 }
